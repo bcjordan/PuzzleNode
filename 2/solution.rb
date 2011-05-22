@@ -43,7 +43,7 @@ def get_rate (currency, target_currency, rate)
          return rate if rate
       end
     end
-    nil 
+    nil
   end
 end
 
@@ -58,7 +58,7 @@ def bankers_rounder n
   else
     if hundreth.odd?
       ((n * 100).truncate + 1) / 100.0
-    elsif hundreth.even? 
+    elsif hundreth.even?
       ((n * 100).truncate + 1) / 100.0
     end
   end
