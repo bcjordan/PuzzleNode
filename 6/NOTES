@@ -1,0 +1,27 @@
+>> "H"[0].to_s(2).rjust(8, '0')
+=> "01001000"
+
+>> "Hello World".split("").each{ |c| print c[0].to_s(2).rjust(8, '0') }
+0100100001100101011011000110110001101111001000000101011101101111011100100110110001100100=> ["H", "e", "l", "l", "o", " ", "W", "o", "r", "l", "d"]
+
+
+"Hello World".split("").inject(""){ |string, c| string += c[0].to_s(2).rjust(8, '0') }
+=> "0100100001100101011011000110110001101111001000000101011101101111011100100110110001100100"
+
+
+>> "abcde".unpack('@1b*')
+=> ["01000110110001100010011010100110"]
+
+>> "000A".to_i(16)
+=> 10
+
+# 10 bytes in, 4 bytes long is the location
+
+Location: .unpack('@10L')
+
+Pixel Array is a block of 32-bit DWORDs,
+
+i.unpack('@1078C*')
+
+start = i.unpack('@10L')[0]
+i.unpack("@#{start}C*")
