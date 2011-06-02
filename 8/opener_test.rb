@@ -17,7 +17,7 @@ class OpenerTest < Test::Unit::TestCase
 
     should "have loaded" do
       assert @opener.hash
-      
+
       assert_equal 1, @opener.board[0][0]
       assert_equal "gyre", @opener.dict[0]
       assert_equal ["i", 4], @opener.tiles.first
@@ -38,9 +38,11 @@ class OpenerTest < Test::Unit::TestCase
     end
 
     should "get value of word placement" do
-      value = @opener.placement_value(@nums1, @nums2)
+      assert_equal 8, @opener.placement_value([0,1,2], [1,2,3])
 
+      value = @opener.placement_value(@nums1, @nums2)
       assert_equal value, 32
+
     end
 
     should "find the best score for a given 2d array" do
@@ -51,7 +53,7 @@ class OpenerTest < Test::Unit::TestCase
 
     should "write a correct solution" do
       assert_equal File.open("EXAMPLE_OUTPUT.txt").readlines.to_s,
-                   @opener.board_to_string(@opener.best_opener)
+      @opener.board_to_string(@opener.best_opener)
     end
   end
 
@@ -60,12 +62,12 @@ class OpenerTest < Test::Unit::TestCase
       @opener = Opener.new "INPUT.json"
     end
 
-    should "print answer" do
+    should "lead to a printed answer" do
       board = @opener.board_to_string(@opener.best_opener)
-      #board = @opener.board_to_string(@opener.board)
       out = File.new("board.txt", "w")
       out.write(board)
       out.close
     end
   end
+
 end

@@ -36,7 +36,8 @@ class Opener
   def best_opener
     rotated = rotate_board_ccw
 
-    best_move_normal, best_move_ccw = get_best(@board), get_best(rotated)
+    best_move_normal = get_best(@board)
+    best_move_ccw = get_best(rotated)
 
     if best_move_normal[1] > best_move_ccw[1]
       opener best_move_normal
@@ -70,11 +71,13 @@ class Opener
     board.each_with_index { |line, i|
       pp line
       @words_to_values.each { |w, v|
-        if v
+        if v # only consider words that can be covered with current tiles
           num_placements = (line.size - v.size) + 1
+          
           num_placements.times { |j|
             value = placement_value(v, line[j, v.size])
             word_leader = [w, value, [i, j]] if value > word_leader[1]
+            pp "Word: #{w}, value: #{value}, values: #{v}"
           }
         end
       }
